@@ -5,6 +5,32 @@ let pageThree = document.querySelector(".page-three")
 let pageFour = document.querySelector(".page-four")
 let pageFive = document.querySelector(".page-five")
 
+//BACK BUTTON FUNCTIONALITY
+//declare variables for each back button
+let backButtonTwo = document.getElementById('two');
+let backButtonThree = document.getElementById('three');
+let backButtonFour = document.getElementById('four');
+
+//declare go back function
+function goBack(e) {
+    if (e.target.id === 'two') {
+        pageOne.style.display = 'block';
+        pageTwo.style.display = 'none';
+    } else if (e.target.id === 'three') {
+        pageTwo.style.display = 'block';
+        pageThree.style.display = 'none';
+    } else if (e.target.id === 'four') {
+        pageThree.style.display = 'block';
+        pageFour.style.display = 'none';
+    }
+};
+
+//add event listeners to each button
+backButtonTwo.addEventListener('click', e => goBack(e));
+backButtonThree.addEventListener('click', e => goBack(e));
+backButtonFour.addEventListener('click', e => goBack(e));
+
+
 //PAGE 1
 //event listener for find brewery button
 findBrew.addEventListener('click', () => {
@@ -12,6 +38,8 @@ findBrew.addEventListener('click', () => {
     pageTwo.style.display = 'block';
 
 })
+
+
 
 //PAGE 2
 //event listener for if no is clicked on are you 21 or over?

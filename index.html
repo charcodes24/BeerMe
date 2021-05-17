@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <title>Beer Me</title>
 </head>
 <body>
     <div class="page-one">
-        <div class="header">
-            <h1 id="beer-me">Beer Me</h1>
+        <div id="beer-image-container">
+            <img id="beer-image" src="https://www.bottleyourbrand.com/media/dol/design/1/14886378480230481353648465.png" alt="">
         </div>
+        <!-- <div class="header">
+            <h1 id="beer-me">Beer Me</h1>
+        </div> -->
         <div class="button">
             <button id="find-brew">Find A Brewery</button>
         </div>
@@ -22,34 +27,28 @@
             <button id="yes">Yes</button>
             <button id="no">No</button>
         </div>
+        <div class="back-button">
+            <button id="two" class="back">Back</button>
+        </div>
     </div>
     <div class="page-three">
         <div id="img1" class="img-container">
-            <img src="/Users/char.johnson/Development/code/Mod1/JavaScript-Project/BeerMe/images/fabio-alves-IAl8wCDWhUo-unsplash.jpg" alt="">
+            <img src="" alt="">
         </div>
             <form id="zip-code-form" action="" method="POST">
                 <input type="text" id="zip-code" class="zip-code-container" placeholder="Enter zipcode here">
             </form>
+        <div class="back-button">
+            <button id="three" class="back">Back</button>
+        </div>
     </div>
     <div class="page-four">
-        <div class="map-container">
-        </div>
-        <div class="list-container">
-            <ul id="brewery-list">
-            </ul>
+        <div class="breweries-container"></div>
+        <div class="back-button">
+            <button id="four" class="back">Back</button>
         </div>
     </div>
-    <div class="page-five">
-        <div class="brewery-name">
-            <h1 id="brewery">Brewery Name Here</h1>
-        </div>
-        <div class="brewery-container"></div>
-        <div class="brewery-info">
-            <p id="phone-number">949-292-2176</p>
-            <p id="address">2146 S Johnson Ct Visalia CA 93277</p>
-            <p id="website">www.google.com</p>
-        </div>
-    </div>
+   
 
     
     <script src="./script.js"></script>
