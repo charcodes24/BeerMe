@@ -3,31 +3,20 @@
 }
 
 body {
-    /* background-image: url("./images/markus-spiske-qn5iDwvOZgo-unsplash.jpg");
+    background-image: url("./images/markus-spiske-qn5iDwvOZgo-unsplash.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    opacity: 50%; */
     width: 100%;
     height: 100%;
     text-align: center;
 
 }
 
-body::after {
-    background-image: url("./images/markus-spiske-qn5iDwvOZgo-unsplash.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    opacity: 50%;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
 h1 {
+    font-size: 10vw;
     font-family: 'Rubik Mono One', sans-serif;
-    color: black;
+    color: white;
 }
 
 #beer-image {
@@ -67,11 +56,22 @@ button:active {
     transform: scale(0.99);
 }
 
+#find-brew {
+    text-align: center;
+    position: relative;
+    bottom: 50px;
+}
+
 
 .page-two {
     display: none;
     padding-top: 25%;
     padding-bottom: 25%;
+}
+
+#two {
+    position: relative;
+    top: 15px;
 }
 
 .page-three {
@@ -87,32 +87,40 @@ button:active {
 }
 
 .img-container img{
-    max-width: 350px;;
+    width: 50%;
+    height: 50%;
+    border: solid white 5px;
 }
 
-#zip-code {
-    text-align: center;
-}
-
-li{
-    font-family: 'Rubik', sans-serif;
-    list-style-type: none;
-    font-size: 45px;
+#zip-code-form {
     padding: 20px;
 }
 
-a {
-    text-decoration: none;
+#zip-code {
+    height: 35px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 3%;
+    background-color: mintcream
 }
-
-a:hover {
-    color: red;
-}
-
 
 button.back {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
-    color: ligth green;
 }
+
+.card {
+    color: white;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background-image: URL ('./images/timothy-dykes-Lq1rOaigDoY-unsplash.jpg');
+    /* border:solid black 1px; */
+    padding: 1rem;
+    width: 20rem;
+    height: 20rem;
+    display: inline-block;
+    margin: 1rem 2rem;
+}
+

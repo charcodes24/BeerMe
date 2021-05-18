@@ -9,8 +9,6 @@ let pageFive = document.querySelector(".page-five")
 //declare variables for each back button
 let backButtonTwo = document.getElementById('two');
 let backButtonThree = document.getElementById('three');
-let backButtonFour = document.getElementById('four');
-
 //declare go back function
 function goBack(e) {
     if (e.target.id === 'two') {
@@ -28,7 +26,6 @@ function goBack(e) {
 //add event listeners to each button
 backButtonTwo.addEventListener('click', e => goBack(e));
 backButtonThree.addEventListener('click', e => goBack(e));
-backButtonFour.addEventListener('click', e => goBack(e));
 
 
 //PAGE 1
@@ -45,7 +42,7 @@ findBrew.addEventListener('click', () => {
 //event listener for if no is clicked on are you 21 or over?
 let noButton = document.getElementById('no');
 noButton.addEventListener('click', () => {
-    alert(`Sorry! Might wanna find something else to do. You won't be able to enjoy a delicious beer anyways.`)
+    alert(`No beer for you!`)
 })
 
 //event listener for if yes is clicked on are you 21 or over?
@@ -58,12 +55,27 @@ yesButton.addEventListener('click', () => {
 
 //PAGE 3
 //create function to pass into fetch that creates html elements for each brewery and appends to page
-let listContainer = document.querySelector('.list-container')
+let breweryContainer = document.querySelector('.breweries-container')
 function createBreweryElements(element) {
-    let breweryList = document.createElement('li');
-    breweryList.innerHTML = element.name
-    listContainer.append(breweryList);
+    let breweryCard = document.createElement('div');
+    breweryCard.classList.add('card')
+    let beerImage = document.createElement('img');
+    beerImage.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGb4gL4R65-Z0ash_Bn-p2lwNSx4iFPTm6zw&usqp=CAU"
+    beerImage.className = 'beer-bottle'
+    let breweryName = document.createElement('h2');
+    breweryName.innerHTML = element.name;
+    let address = document.createElement('p');
+    if (element.street === null) {
+        address.innerHTML = `There is no address for this brewery in our database.`
+    } else {
+    address.innerHTML = element.street;
+    };
+    let cityState = document.createElement('p');
+    cityState.innerHTML = `${element.city}, ${element.state}`
+    breweryCard.append(beerImage, breweryName, address, cityState);
+    breweryContainer.append(breweryCard);
 }
+
 let form = document.getElementById('zip-code-form');
 let zipcodeInput = document.getElementById('zip-code')
 form.addEventListener('submit', (e) => {
@@ -73,14 +85,20 @@ form.addEventListener('submit', (e) => {
     pageFour.style.display = 'block'
     let postalCode = zipcodeInput.value
     console.log(postalCode)
+    if (postalCode === " " || typeof postalCode === NaN) {
+        alert(`Please enter a valid 5-digit zipcode.`)
+    }
     fetch(`https://api.openbrewerydb.org/breweries?by_postal=${postalCode}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            form.reset();
+            if (data.length === 0) {
+                alert("Sorry there are no breweries for that zipcode in our database.")
+            console.log(data); 
+        }
             for (element of data) {
+                console.log(data);
                 createBreweryElements(element)
             }
-
-        })
-    
+        });
 });
