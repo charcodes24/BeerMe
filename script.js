@@ -76,28 +76,32 @@ function createBreweryElements(element) {
     breweryContainer.append(breweryCard);
 }
 
+//create elements to let user know there are no breweries in database for that zipcode
+function noBreweriesForZipcode() {
+    let noBreweries = document.createElement('h1');
+    noBreweries.innerHTML = "Sorry there are no breweries for that zipcode in our database.";
+    breweryContainer.append(noBreweries)
+}
+
 let form = document.getElementById('zip-code-form');
 let zipcodeInput = document.getElementById('zip-code')
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(`i've been submitted`)
     pageThree.style.display = 'none'
     pageFour.style.display = 'block'
     let postalCode = zipcodeInput.value
-    console.log(postalCode)
-    if (postalCode === " " || typeof postalCode === NaN) {
-        alert(`Please enter a valid 5-digit zipcode.`)
+    if (isNaN(postalCode)) {
+        alert(`Please enter a valid 5-digit zipcode.`);
+        return false;
     }
     fetch(`https://api.openbrewerydb.org/breweries?by_postal=${postalCode}`)
         .then(res => res.json())
         .then(data => {
             form.reset();
             if (data.length === 0) {
-                alert("Sorry there are no breweries for that zipcode in our database.")
-            console.log(data); 
+                noBreweriesForZipcode();
         }
             for (element of data) {
-                console.log(data);
                 createBreweryElements(element)
             }
         });
