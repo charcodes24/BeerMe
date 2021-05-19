@@ -1,3 +1,4 @@
+//declaring global variables that will be commonly used
 let findBrew = document.getElementById('find-brew');
 let pageOne = document.querySelector('.page-one')
 let pageTwo = document.querySelector(".page-two")
@@ -39,7 +40,6 @@ function clearPage(breweryContainer) {
     }
 }
 
-
 //PAGE 1
 //event listener for find brewery button
 findBrew.addEventListener('click', () => {
@@ -47,8 +47,6 @@ findBrew.addEventListener('click', () => {
     pageTwo.style.display = 'block';
 
 })
-
-
 
 //PAGE 2
 //event listener for if no is clicked on are you 21 or over?
@@ -64,7 +62,6 @@ yesButton.addEventListener('click', () => {
     pageThree.style.display = 'block';
 })
 
-
 //PAGE 3
 //create function to pass into fetch that creates html elements for each brewery and appends to page
 let breweryContainer = document.querySelector('.breweries-container')
@@ -74,6 +71,7 @@ function createBreweryElements(element) {
     let beerImage = document.createElement('img');
     beerImage.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGb4gL4R65-Z0ash_Bn-p2lwNSx4iFPTm6zw&usqp=CAU"
     beerImage.className = 'beer-bottle'
+    beerImage.setAttribute('alt', 'Cartoon beer mugs cheersing.')
     let breweryName = document.createElement('h2');
     breweryName.innerHTML = element.name;
     let address = document.createElement('p');
@@ -88,19 +86,24 @@ function createBreweryElements(element) {
     breweryContainer.append(breweryCard);
 }
 
-//create elements to let user know there are no breweries in database for that zipcode
+//create h1 element to let user know there are no breweries in database for that zipcode
 function noBreweriesForZipcode() {
     let noBreweries = document.createElement('h1');
+    noBreweries.setAttribute('id', 'sorry');
+    console.log(noBreweries)
     noBreweries.innerHTML = "Sorry there are no breweries for that zipcode in our database.";
     breweryContainer.append(noBreweries)
 }
 
+//submit form & fetch data from api
 let form = document.getElementById('zip-code-form');
 let zipcodeInput = document.getElementById('zip-code')
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     let postalCode = zipcodeInput.value
-    if (isNaN(postalCode)) {
+    let postalCodeToString = postalCode.toString().length;
+    console.log(postalCodeToString)
+    if (isNaN(postalCode) || postalCodeToString != 5) {
         alert(`Please enter a valid 5-digit zipcode.`);
         form.reset();
     }else {
@@ -109,7 +112,7 @@ form.addEventListener('submit', (e) => {
         .then(data => {
             if (data.length === 0) {
                 noBreweriesForZipcode();
-        }
+            } 
             for (element of data) {
                 createBreweryElements(element)
             }

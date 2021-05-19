@@ -3,25 +3,22 @@
 }
 
 body {
-    background-image: url("./images/markus-spiske-qn5iDwvOZgo-unsplash.jpg");
+    /* background-image: url("./images/markus-spiske-qn5iDwvOZgo-unsplash.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: cover; */
+    background-color: black;
     width: 100%;
     height: 100%;
     text-align: center;
 
 }
 
+
 h1 {
     font-size: 75px;
     font-family: 'Rubik Mono One', sans-serif;
     color: white;
-}
-
-#beer-image {
-    width: 75%;
-    height: 50%; 
 }
 
 button {
@@ -64,7 +61,7 @@ button:active {
 
 .page-one {
     position: relative;
-    top: 300px;
+    top: 275px;
 }
 
 
@@ -86,21 +83,7 @@ button:active {
 .page-three {
     display: none;
     position: relative;
-    top: 225px;
-}
-
-.page-four {
-    display: none;
-}
-
-.page-five {
-    display: none;
-}
-
-.img-container img{
-    width: 50%;
-    height: 50%;
-    border: solid white 5px;
+    top: 190px;
 }
 
 #zip-code-form {
@@ -115,6 +98,21 @@ button:active {
     background-color: mintcream
 }
 
+.page-four {
+    display: none;
+}
+
+.img-container img{
+    width: 50%;
+    height: 50%;
+    border: solid white 5px;
+}
+
+.beer-bottle {
+    height: 120px;
+    width: 125px;
+}
+
 button.back {
     position: relative;
     top: 0;
@@ -127,12 +125,14 @@ button.back {
     text-align: center;
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    background-image: URL ('./images/timothy-dykes-Lq1rOaigDoY-unsplash.jpg');
-    /* border:solid black 1px; */
     padding: 1rem;
     width: 20rem;
     height: 20rem;
     display: inline-block;
     margin: 1rem 2rem;
+}
+
+p {
+    font-size: 18px;
 }
 
