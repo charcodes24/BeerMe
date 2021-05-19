@@ -9,6 +9,7 @@ let pageFive = document.querySelector(".page-five")
 //declare variables for each back button
 let backButtonTwo = document.getElementById('two');
 let backButtonThree = document.getElementById('three');
+let backButtonFour = document.getElementById('four');
 //declare go back function
 function goBack(e) {
     if (e.target.id === 'two') {
@@ -23,9 +24,20 @@ function goBack(e) {
     }
 };
 
-//add event listeners to each button
+//add event listeners to each back button
 backButtonTwo.addEventListener('click', e => goBack(e));
 backButtonThree.addEventListener('click', e => goBack(e));
+backButtonFour.addEventListener('click', function(e) {
+    goBack(e);
+    clearPage(breweryContainer);
+});
+
+//clear page if back button is used and new zipcode is submitted
+function clearPage(breweryContainer) {
+    while (breweryContainer.firstChild) {
+        breweryContainer.removeChild(breweryContainer.firstChild)
+    }
+}
 
 
 //PAGE 1
@@ -87,22 +99,22 @@ let form = document.getElementById('zip-code-form');
 let zipcodeInput = document.getElementById('zip-code')
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    pageThree.style.display = 'none'
-    pageFour.style.display = 'block'
     let postalCode = zipcodeInput.value
     if (isNaN(postalCode)) {
         alert(`Please enter a valid 5-digit zipcode.`);
-        return false;
-    }
-    fetch(`https://api.openbrewerydb.org/breweries?by_postal=${postalCode}`)
+        form.reset();
+    }else {
+        fetch(`https://api.openbrewerydb.org/breweries?by_postal=${postalCode}`)
         .then(res => res.json())
         .then(data => {
-            form.reset();
             if (data.length === 0) {
                 noBreweriesForZipcode();
         }
             for (element of data) {
                 createBreweryElements(element)
             }
+            pageThree.style.display = 'none';
+            pageFour.style.display = 'block';
+            form.reset();
         });
-});
+}});
